@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Jekyll Primeira Postagem (Ubuntu)
-date: 2017-05-24 21:29:54
+date: 2017-07-22 11:11:51
 published: true
 tags: [htmlwidgets, r]
 ---
@@ -10,7 +10,7 @@ Neste tutorial, instalaremos um site de desenvolvimento Jekyll 3.2.1 no Ubuntu 1
 
 Primeiro precisamos configurar nossa máquina para instalar o Jekyll.
 
-#Passo 1: Instalando Jekyll no Ubuntu
+###Passo 1: Instalando Jekyll no Ubuntu
 **[Utilize seu terminal]**
 Começaremos por atualizar nossa lista de pacotes para ter certeza de que temos as informações mais recentes sobre as versões mais recentes dos pacotes e suas dependências.
 
@@ -54,7 +54,7 @@ jekyll-watch (1.3.0)
 {% endhighlight %}
 
 
-#Configurando RStudio
+###Configurando RStudio
 Após ter configurado sua máquina, vamos agora para as configurações no RStudio.
 Primeiro instale as dependências abaixo:
 
@@ -76,7 +76,7 @@ install.packages(c(
 {% endhighlight %}
 
 
-#Obtendo um repositório
+###Obtendo um repositório
 Faça um fork do repositório [knitr-jekyll](https://github.com/yihui/knitr-jekyll) para que você possa gerar seus post diretamente de um RMarkdown. 
 
 Essa será a estrutura do seu repositório:
@@ -202,3 +202,33 @@ Agora que você conseguiu criar sua primeira postagem, basta dar push nos seus a
 Esse tutorial foi desenvido baseado em:
 [Jekyll - Quick Start](http://jekyll-windows.juthilo.com/5-running-jekyll/
 [Jekyll with GitHub Pages](https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/)
+
+###Problemas Frequentes
+
+<p>Problemas com htmlwidgets.</p>
+Uma dica: verifiquem se em _layouts/post.html as seguintes linhas estão presentes:
+
+![My helpful screenshot]({{https://arthurlustosa.github.io/maisumsitesobre}}/assets/print-solution-jekyll.png)
+
+
+Comigo funcionou ao adicionar isso no final do post.html
+
+<p>Caso seus plots não estejam aparecendos após a publicação:</p>
+No seu .Rmd adicione a opção: screenshot.force = FALSE. Exemplo: 
+
+
+{% highlight r %}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      fig.align="center", 
+                      fig.cap = '', 
+                      screenshot.force = FALSE)
+{% endhighlight %}
+
+Outra dica: talvez no _config.yml ao colocar mais uma barra no final da baseurl ajude. 
+Exemplo: 
+
+{% highlight r %}
+  baseurl: "/portfolio/"
+{% endhighlight %}
