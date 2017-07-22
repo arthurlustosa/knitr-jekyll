@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Jekyll Primeira Postagem (Windows)
-date: 2017-05-24 21:29:54
+date: 2017-07-22 11:34:37
 published: true
 tags: [htmlwidgets, r]
 
@@ -202,6 +202,47 @@ arthur@pc:~/workspace/maisumsitesobre$ jekyll serve
 
 **IMPORTANTE** antes de dar push, executar o comando **brocks::blog_serve()**
 Agora que você conseguiu criar sua primeira postagem, basta dar push nos seus arquivos. 
+
+###Problemas Frequentes
+*e simples de resolver*
+
+<p>Problemas com htmlwidgets.</p>
+Uma dica: verifiquem se em _layouts/post.html as seguintes linhas estão presentes:
+
+![My helpful screenshot]({{ site.url }}/assets/print-solution-jekyll.png)
+
+
+Comigo funcionou ao adicionar isso no final do post.html
+
+<p><b>Caso seus plots não estejam aparecendos após a publicação:</b></p>
+No seu .Rmd adicione a opção: screenshot.force = FALSE. Exemplo: 
+
+
+{% highlight r %}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE, 
+                      fig.align="center", 
+                      fig.cap = '', 
+                      screenshot.force = FALSE)
+{% endhighlight %}
+
+<p><b>Caso as imagens não estejam aparecendos após a publicação:</b></p>
+Verifique o path das imagens, eu criei uma pasta chamada assets que contêm as imagens que estou utilizando nessa postagem
+
+{% highlight r %}
+![Plotando imagem]({{ site.url }}/assets/print-solution-jekyll.png)
+{% endhighlight %}
+
+
+
+Outra dica: talvez no _config.yml ao colocar mais uma barra no final da baseurl ajude. 
+Exemplo: 
+
+{% highlight r %}
+  baseurl: "/portfolio/"
+{% endhighlight %}
+
 
 Esse tutorial foi desenvido baseado em:
 [Run Jekyll on Windows](http://jekyll-windows.juthilo.com/)
