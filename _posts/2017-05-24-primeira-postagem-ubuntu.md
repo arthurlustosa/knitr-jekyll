@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Jekyll Primeira Postagem (Ubuntu)
-date: 2017-07-22 11:11:51
+date: 2017-07-22 11:22:33
 published: true
 tags: [htmlwidgets, r]
 ---
@@ -208,7 +208,7 @@ Esse tutorial foi desenvido baseado em:
 <p>Problemas com htmlwidgets.</p>
 Uma dica: verifiquem se em _layouts/post.html as seguintes linhas estão presentes:
 
-![My helpful screenshot]({{https://arthurlustosa.github.io/maisumsitesobre}}/assets/print-solution-jekyll.png)
+![My helpful screenshot]({{ site.url }}/assets/print-solution-jekyll.png)
 
 
 Comigo funcionou ao adicionar isso no final do post.html
