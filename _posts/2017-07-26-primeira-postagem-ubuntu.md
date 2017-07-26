@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Jekyll Primeira Postagem (Ubuntu)
-date: 2017-07-22 11:34:54
+date: 2017-07-26 16:57:17
 published: true
 tags: [htmlwidgets, r]
 ---
@@ -199,7 +199,7 @@ arthur@pc:~/workspace/maisumsitesobre$ jekyll serve
 **IMPORTANTE** antes de dar push, executar o comando **brocks::blog_serve()**
 Agora que você conseguiu criar sua primeira postagem, basta dar push nos seus arquivos. 
 
-###Problemas Frequentes
+### Problemas Frequentes
 *e simples de resolver*
 
 <p>Problemas com htmlwidgets.</p>

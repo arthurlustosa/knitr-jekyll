@@ -1,60 +1,57 @@
 ---
 layout: post
-title:  Jekyll Primeira Postagem (Windows)
+title:  Jekyll Primeira Postagem (Ubuntu)
 date: `r Sys.time()`
 published: true
 tags: [htmlwidgets, r]
-
 ---
 
-Neste tutorial, instalaremos Jekyll 3.2.1. Em tutoriais posteriores, publicaremos um site estático no mesmo servidor e, hospedaremos no [Github Pages](https://pages.github.com/).
+Neste tutorial, instalaremos um site de desenvolvimento Jekyll 3.2.1 no Ubuntu 16.04. Em tutoriais posteriores, publicaremos um site estático no mesmo servidor e, hospedaremos no [Github Pages](https://pages.github.com/).
 
 Primeiro precisamos configurar nossa máquina para instalar o Jekyll.
 
-#Passo 1: Installando Ruby e o Ruby DevKit
-*Install Ruby*
-
-Primeiro, clique no link e baixe o instalador do Ruby que corresponde à arquitetura do seu sistema (x86 / x64). Eu aconselho baixar a versão mais atual (2.3.3)
-
-[Ruby for Windows](https://rubyinstaller.org/downloads/)
-
-Execute o instalador e siga as etapas da instalação. Quando você chegar à tela abaixo, certifique-se de verificar a caixa "Adicionar Ruby executáveis para o seu PATH".
-
-*Instale o Ruby DevKit*
-
-Jekyll tem algumas dependências e para atendê-las você precisará instalar o Development Kit.
-
-[Ruby DevKit](https://rubyinstaller.org/downloads/)
-
-O download é um arquivo executável. Quando você executa o arquivo, ele pedirá um destino para os arquivos. Digite um caminho que não tenha espaços nele. Recomendamos algo simples, como *C:\RubyDevKit\*. Clique em Extrair e aguarde até que o processo seja concluído.
-
-Em seguida, você precisa inicializar o DevKit e vinculá-lo à sua instalação Ruby. Abra sua ferramenta de linha de comando favorita e navegue até a pasta na qual você extraiu o DevKit.
+###Passo 1: Instalando Jekyll no Ubuntu
+**[Utilize seu terminal]**
+Começaremos por atualizar nossa lista de pacotes para ter certeza de que temos as informações mais recentes sobre as versões mais recentes dos pacotes e suas dependências.
 
 ```{r, eval=F}
-cd C:\RubyDevKit
+$ sudo apt-get update
 ```
 
-Detectar instalações Ruby automaticamente e adicioná-las a um arquivo de configuração para a próxima etapa.
+Então vamos instalar Ruby e suas bibliotecas de desenvolvimento, bem como fazer e gcc para que as bibliotecas Jekyll irá compilar uma vez que instalar Jekyll:
 
 ```{r, eval=F}
-ruby dk.rb init
+$ sudo apt-get install ruby ruby-dev make gcc
 ```
 
-Instale o DevKit, vinculando-o à sua instalação Ruby.
+Quando isso estiver completo, usaremos o gerenciador de pacotes de Gem do Ruby para instalar o Jekyll em si, bem como o Bundler para gerenciar dependências do Gem.
 
 ```{r, eval=F}
-ruby dk.rb install
+$ sudo gem install jekyll bundler
 ```
 
-#Instalando o Jekyll
-
-Jekyll se apresenta sob a forma de uma Gem Ruby, que é um pacote de software fácil de instalar. Para instalar Jekyll e todas as suas dependências padrão, inicie sua ferramenta de linha de comando favorita e digite o seguinte comando.
+Após instalado, verifique a versão do Jekyll:
 
 ```{r, eval=F}
-gem install jekyll
+$ jekyll --version
+jekyll 3.0.1
+
+$ gem list jekyll
+
+*** LOCAL GEMS ***
+
+jekyll (3.0.1)
+jekyll-coffeescript (1.0.1)
+jekyll-feed (0.3.1)
+jekyll-gist (1.1.0)
+jekyll-paginate (1.1.0)
+jekyll-sass-converter (1.5.0, 1.3.0)
+jekyll-watch (1.3.0)
+
 ```
 
-#Configurando RStudio
+
+###Configurando RStudio
 Após ter configurado sua máquina, vamos agora para as configurações no RStudio.
 Primeiro instale as dependências abaixo:
 
@@ -76,7 +73,7 @@ install.packages(c(
 ```
 
 
-#Obtendo um repositório
+###Obtendo um repositório
 Faça um fork do repositório [knitr-jekyll](https://github.com/yihui/knitr-jekyll) para que você possa gerar seus post diretamente de um RMarkdown. 
 
 Essa será a estrutura do seu repositório:
@@ -191,7 +188,7 @@ arthur@pc:~/workspace/maisumsitesobre$ jekyll serve
 **IMPORTANTE** antes de dar push, executar o comando **brocks::blog_serve()**
 Agora que você conseguiu criar sua primeira postagem, basta dar push nos seus arquivos. 
 
-###Problemas Frequentes
+### Problemas Frequentes
 *e simples de resolver*
 
 <p>Problemas com htmlwidgets.</p>
@@ -228,6 +225,6 @@ Exemplo:
   baseurl: "/portfolio/"
 ```
 
-
 Esse tutorial foi desenvido baseado em:
-[Run Jekyll on Windows](http://jekyll-windows.juthilo.com/)
+[Jekyll - Quick Start](http://jekyll-windows.juthilo.com/5-running-jekyll/
+[Jekyll with GitHub Pages](https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/)

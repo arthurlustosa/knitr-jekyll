@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Jekyll Primeira Postagem (Windows)
-date: 2017-07-22 11:34:37
+date: `r Sys.time()`
 published: true
 tags: [htmlwidgets, r]
 
@@ -30,40 +30,35 @@ O download é um arquivo executável. Quando você executa o arquivo, ele pedir�
 
 Em seguida, você precisa inicializar o DevKit e vinculá-lo à sua instalação Ruby. Abra sua ferramenta de linha de comando favorita e navegue até a pasta na qual você extraiu o DevKit.
 
-
-{% highlight r %}
+```{r, eval=F}
 cd C:\RubyDevKit
-{% endhighlight %}
+```
 
 Detectar instalações Ruby automaticamente e adicioná-las a um arquivo de configuração para a próxima etapa.
 
-
-{% highlight r %}
+```{r, eval=F}
 ruby dk.rb init
-{% endhighlight %}
+```
 
 Instale o DevKit, vinculando-o à sua instalação Ruby.
 
-
-{% highlight r %}
+```{r, eval=F}
 ruby dk.rb install
-{% endhighlight %}
+```
 
 #Instalando o Jekyll
 
 Jekyll se apresenta sob a forma de uma Gem Ruby, que é um pacote de software fácil de instalar. Para instalar Jekyll e todas as suas dependências padrão, inicie sua ferramenta de linha de comando favorita e digite o seguinte comando.
 
-
-{% highlight r %}
+```{r, eval=F}
 gem install jekyll
-{% endhighlight %}
+```
 
 #Configurando RStudio
 Após ter configurado sua máquina, vamos agora para as configurações no RStudio.
 Primeiro instale as dependências abaixo:
 
-
-{% highlight r %}
+```{r, eval=F}
 # Required for the htmlwidgets wrapper functions -----------------------------
 # install.packages("devtools")
 devtools::install_github("brendan-r/brocks")
@@ -77,7 +72,8 @@ install.packages(c(
   "threejs",
   "maps"
 ))
-{% endhighlight %}
+
+```
 
 
 #Obtendo um repositório
@@ -85,8 +81,7 @@ Faça um fork do repositório [knitr-jekyll](https://github.com/yihui/knitr-jeky
 
 Essa será a estrutura do seu repositório:
 
-
-{% highlight r %}
+```{r, eval=F}
 .
 ├── _config.yml
 ├── _data
@@ -111,12 +106,11 @@ Essa será a estrutura do seu repositório:
 ├── _site
 ├── .jekyll-metadata
 └── index.html 
-{% endhighlight %}
+```
 
 A configuração mostrada acima será a do seu repositório. O arquivo *_config.yml* será onde você irá configurar as rotas do seu projeto, é bastante simples
 
-
-{% highlight r %}
+```{r, eval=F}
 # Site settings
 title: Your awesome title
 email: your-email@domain.com
@@ -132,20 +126,18 @@ permalink: /:year/:month/:title.html
 
 # Build settings
 markdown: kramdown
-{% endhighlight %}
+```
 
 Com as rotas configuradas, é hora de gerar o primeiro post do seu blog. Para isso, vá na pasta _source e crie um diretório do seu projeto.
 
 **[Utilize seu terminal]**
-
-{% highlight r %}
+```{r, eval=F}
 arthur@pc:~/maisumsitesobre/_source/$ mkdir primeira-postagem
-{% endhighlight %}
+```
 
 Dentro deste diretório você ira salvar o seu RMarkdown. O seu arquivo.Rmd deve seguir a seguinte estrutura básica:
 
-
-{% highlight r %}
+```{r, eval=F}
 ---
 layout: post
 title:  Primeira Postagem (Ubuntu)
@@ -155,21 +147,19 @@ tags: [htmlwidgets, r]
 ---
 
 e depois os R code chunks.
-{% endhighlight %}
+```
 
 O nome do seu RMarkdown deverá seguir o padrão year-month-day-nome.Rmd, por exemplo 2017-05-24-minha-primeira-postagem.Rmd
 
 **[Utilize o terminal do RStudio]**
 Com o seu markdown pornto é hora de gerar o primeiro post. Verifique se sua sessão do RStudio está setada para o diretório do seu site: 
 
-
-{% highlight r %}
+```{r, eval=F}
 > setwd("~/workspace/maisumsitesobre")
-{% endhighlight %}
+```
 
 Execute o comando:
-
-{% highlight r %}
+```{r, eval=F}
 #gerar postagem do blog
 > brocks::blog_gen()
 
@@ -181,29 +171,27 @@ Configuration file: /home/arthur/workspace/projetos/maisumsitesobre/_config.yml
                     done in 0.486 seconds.
  Auto-regeneration: disabled. Use --watch to enable.
 NULL
-{% endhighlight %}
+```
 
 Se tudo der certo, um arquivo .md será gerado no diretório do seu projeto, então você poderá subir um servidor com o seu site e ver o seu post publicado, basta executar o seguinte comando no terminado do RStudio:
 
-
-{% highlight r %}
+```{r, eval=F}
 #subir o servidor no RStudio
 > brocks::blog_serve()
-{% endhighlight %}
+```
 
 Porém o site será levantando utilizando o terminal da IDE, o ideal é que você utilize uma janela do seu terminal para deixar o site rodando. 
 
 **[Utilize seu terminal]**
 
-
-{% highlight r %}
+```{r, eval=F}
 arthur@pc:~/workspace/maisumsitesobre$ jekyll serve
-{% endhighlight %}
+```
 
 **IMPORTANTE** antes de dar push, executar o comando **brocks::blog_serve()**
 Agora que você conseguiu criar sua primeira postagem, basta dar push nos seus arquivos. 
 
-###Problemas Frequentes
+### Problemas Frequentes
 *e simples de resolver*
 
 <p>Problemas com htmlwidgets.</p>
@@ -217,31 +205,28 @@ Comigo funcionou ao adicionar isso no final do post.html
 <p><b>Caso seus plots não estejam aparecendos após a publicação:</b></p>
 No seu .Rmd adicione a opção: screenshot.force = FALSE. Exemplo: 
 
-
-{% highlight r %}
+```{r, eval=F}
 knitr::opts_chunk$set(echo = TRUE, 
                       warning = FALSE, 
                       message = FALSE, 
                       fig.align="center", 
                       fig.cap = '', 
                       screenshot.force = FALSE)
-{% endhighlight %}
+```
 
 <p><b>Caso as imagens não estejam aparecendos após a publicação:</b></p>
 Verifique o path das imagens, eu criei uma pasta chamada assets que contêm as imagens que estou utilizando nessa postagem
-
-{% highlight r %}
+```{r, eval=F}
 ![Plotando imagem]({{ site.url }}/assets/print-solution-jekyll.png)
-{% endhighlight %}
+```
 
 
 
 Outra dica: talvez no _config.yml ao colocar mais uma barra no final da baseurl ajude. 
 Exemplo: 
-
-{% highlight r %}
+```{r, eval=F}
   baseurl: "/portfolio/"
-{% endhighlight %}
+```
 
 
 Esse tutorial foi desenvido baseado em:
